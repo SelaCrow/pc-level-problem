@@ -11,7 +11,32 @@ class Node:
 from collections import deque
 
 def level(root):
-    pass
+    if root is None:
+        return -1
+
+    # queue for BFS, starting with the root
+    queue = deque([root])
+
+    # keeps track of which level we’re on
+    current_level = 0
+
+    # track the level with the most nodes seen so far
+    max_nodes = 0
+    max_level = 0
+
+    # standard BFS loop
+    while queue:
+        # number of nodes at *this* level
+        level_size = len(queue)
+
+        # if this level beats the previous max, update it
+        if level_size > max_nodes:
+            max_nodes = level_size
+            max_level = current_level
+
+        # process all nodes at the current level
+        for _ in range(level_size):
+            node = queue.popleft()
 
 
 r"""
